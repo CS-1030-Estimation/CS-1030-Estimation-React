@@ -1,12 +1,9 @@
-import React, {componants} from 'react';
+import React, { Component } from 'react'
 
-
-function Estimate() {
-  return (
-    <div className="Estimate">
-      <h1>Esimate.jsx</h1>
-    </div>
-  );
+export default class Estimate extends Component {
+  render = () => {
+    return (
+      <h1>Hello World</h1>
+    )
+  }
 }
-
-export default Estimate;
