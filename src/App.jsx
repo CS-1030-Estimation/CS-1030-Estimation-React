@@ -1,14 +1,12 @@
+import React from 'react'
 import './App.css';
 import Estimate from './Componants/Estimate';
-import Header from './Componants/Header'
-import Estimate from './Componants/Estimate'
 
 function App() {
   return (
     <div className="App">
-      <Header/>
+      <h2>App.jsx</h2>
       <Estimate/>
-      <h2>Estimate Will Render Here</h2>
     </div>
   );
 }
