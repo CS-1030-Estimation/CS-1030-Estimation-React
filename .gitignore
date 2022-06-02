@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+
+# to Run Frontend npm start to run server node server/server.js
