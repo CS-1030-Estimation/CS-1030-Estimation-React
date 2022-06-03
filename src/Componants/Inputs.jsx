@@ -17,7 +17,7 @@ export default class Inputs extends Component {
     
     handleEdit = () => {
         this.setState({
-        edit: false
+            edit: false
         })
         this.props.handleEdit(this.props.id, this.state.input)
     }

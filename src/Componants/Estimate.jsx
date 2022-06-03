@@ -55,6 +55,7 @@ export default class Estimate extends Component {
 
     return (
       <div>
+        {console.log(list)}
         {list}
         <input value={this.state.text} onChange={(e) => this.handleChange(e)} type='text'/>
         <button onClick={this.handleSumbit}>Add Items</button>

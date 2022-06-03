@@ -43,7 +43,7 @@ let id = 4
         const index = material.findIndex(element => +element.id === +id)
 
         if(index === -1){
-            return res.status(404).send('Id not found')
+            return res.status(404).send('ID not found')
         }
 
         const newItem = {
@@ -62,7 +62,7 @@ let id = 4
         const index = material.findIndex(element => +element.id === +id)
 
         if(index === -1){
-            return res.status(404).send('Id not found')
+            return res.status(404).send('ID not found')
         }
 
         material.splice(index, 1)
