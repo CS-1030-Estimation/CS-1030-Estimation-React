@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import Inputs from './Inputs'
+import Edits from './../edits/edits'
+import Estimate from '../estimate/estimate'
 // import Select from 'react-select'
 
-export default class Estimate extends Component {
+export default class Inputs extends Component {
   constructor(){
     super()
     this.state = {
@@ -53,7 +54,7 @@ export default class Estimate extends Component {
 
 
     let list = this.state.material.map(element => {
-      return <Inputs
+      return <Edits
         handleDelete={this.handleDelete}
         handleEdit={this.handleEdit}
         key={element.id}
@@ -63,9 +64,12 @@ export default class Estimate extends Component {
 
     return (
       <div>
-        {list}
         <input value={this.state.input} onChange={(e) => this.handleChange(e, 'input')} type='text'/>
         <button onClick={() => this.handleSumbit(this.state.input)}>Add Items</button>
+        {list} 
+        {this.state.material.length > 0 &&
+          <Estimate material={this.state.material} />
+        }
       </div>
     )
   }
