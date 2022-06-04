@@ -4,18 +4,13 @@ import axios from 'axios'
 import Select from 'react-select'
 
 export default class Estimate extends Component {
-
-  state = {
-    material: [],
-    input: ''
-  }
-
-  componentDidMount() {
-    axios.get('/api/Inputs').then(res => {
-      this.setState({
-        material: res.data
-      })
-    })
+  constructor(){
+    super()
+    this.state = {
+      key: 1,
+      input: '',
+      material: [{id:10,text:"Brick"}]
+    }
   }
 
   handleChange = (e) => {
@@ -24,25 +19,39 @@ export default class Estimate extends Component {
     })
   }
 
-  handleSumbit = () => {
-    axios.post('./api/Inputs', {text: this.state.input}).then(res => {
-      this.setState({
-        material: res.date,
-        text: ''
-      })
+  handleSumbit = (e) => {
+    this.state.material.push({id:this.state.key,text:e})
+    this.setState((prevState) => ({
+      key: prevState.key + 1,
+      input: ''
+    }))
+  }
+
+  handleEdit = (e , text) => {
+    for (let i = 0; i < this.state.material.length; i++) {
+      if (this.state.material[i].id == e) {
+        this.state.material[i].text = text
+      } 
+    }
+    this.setState({
+      input: ''
     })
   }
 
-  handleDelete = (id) => {
-    axios.delete(`/api/Inputs/${id}`).then(res => {
-      this.setState({
-        material: res.date
-      })
+  handleDelete = (e) => {
+    for (let i = 0; i < this.state.material.length; i++) {
+      if (this.state.material[i].id == e) {
+        this.state.material.splice(i,1)
+      }
+    }
+    this.setState({
+      input: ''
     })
   }
 
 
   render(){
+
 
     let list = this.state.material.map(element => {
       return <Inputs
@@ -55,10 +64,9 @@ export default class Estimate extends Component {
 
     return (
       <div>
-        {console.log(list)}
         {list}
-        <input value={this.state.text} onChange={(e) => this.handleChange(e)} type='text'/>
-        <button onClick={this.handleSumbit}>Add Items</button>
+        <input value={this.state.input} onChange={(e) => this.handleChange(e, 'input')} type='text'/>
+        <button onClick={() => this.handleSumbit(this.state.input)}>Add Items</button>
       </div>
     )
   }
