@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import Select from 'react-select'
+// import Select from 'react-select'
 
 export default class Inputs extends Component {
 

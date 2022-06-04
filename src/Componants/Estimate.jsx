@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Inputs from './Inputs'
-import axios from 'axios'
-import Select from 'react-select'
+// import Select from 'react-select'
 
 export default class Estimate extends Component {
   constructor(){
@@ -29,7 +28,7 @@ export default class Estimate extends Component {
 
   handleEdit = (e , text) => {
     for (let i = 0; i < this.state.material.length; i++) {
-      if (this.state.material[i].id == e) {
+      if (this.state.material[i].id === e) {
         this.state.material[i].text = text
       } 
     }
@@ -40,7 +39,7 @@ export default class Estimate extends Component {
 
   handleDelete = (e) => {
     for (let i = 0; i < this.state.material.length; i++) {
-      if (this.state.material[i].id == e) {
+      if (this.state.material[i].id === e) {
         this.state.material.splice(i,1)
       }
     }
