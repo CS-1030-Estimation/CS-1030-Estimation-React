@@ -12,12 +12,6 @@ export default class Edits extends Component {
         }
     }
 
-    handleNumber = (e) => {
-        this.setState({
-            sf: e.target.value
-        })
-    } 
-
     handleEdit = () => {
         this.setState({
             edit: false
@@ -35,7 +29,6 @@ export default class Edits extends Component {
             ]
             for (let i = 0; i < options.length; i++) {
                 if (this.props.text === options[i].lable){
-                    console.log(this.props.text, options[i].lable)
                     this.setState({
                         edit: !this.state.edit,
                         select: {

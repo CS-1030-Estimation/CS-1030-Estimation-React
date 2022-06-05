@@ -15,10 +15,11 @@ export default class Inputs extends Component {
     ]
 
     this.state = {
+      display: false,
       key: 1,
       input: '',
       sf: 0,
-      material: [{id:10,text:"Brick",sf:500}],
+      material: [{id:10,text:"Brick",sf:1}],
       select: {
         value: null,
         options
@@ -29,14 +30,16 @@ export default class Inputs extends Component {
   handleSumbit = (e,el) => {
     this.state.material.push({id:this.state.key,text:e,sf:parseInt(el)})
     this.setState((prevState) => ({
+      display: true,
       key: prevState.key + 1,
       input: '',
       sf: 0
     }))
     this.setValue(null)
+    console.log('in sub:  ',this.state.display)
   }
 
-  handleEdit = (e , text, sf) => {
+  handleEdit = (e , text, sf, bool) => {
     for (let i = 0; i < this.state.material.length; i++) {
       if (this.state.material[i].id === e) {
         this.state.material[i].text = text
@@ -44,8 +47,10 @@ export default class Inputs extends Component {
       } 
     }
     this.setState({
+      display: true,
       input: ''
     })
+    console.log('in edit:  ', this.state.display)
   }
 
   handleDelete = (e) => {
@@ -55,7 +60,8 @@ export default class Inputs extends Component {
       }
     }
     this.setState({
-      input: ''
+      input: '',
+      display: false
     })
   }
 
@@ -71,13 +77,15 @@ export default class Inputs extends Component {
   handleText = value => {
     this.setValue(value)
     this.setState({
-      input: value.lable
+      input: value.lable,
+      display: false
     })
   }
 
   handleNumber = (e) => {
     this.setState({
-      sf: e.target.value
+      sf: e.target.value,
+      display: false
     })
   }
 
@@ -106,7 +114,7 @@ export default class Inputs extends Component {
         <input onChange={(e) => this.handleNumber(e)} type='number' min='0' placeholder='Squre Foot' value={this.state.sf}/>
         <button onClick={() => this.handleSumbit(this.state.input, this.state.sf)}>Add Items</button>
         {list} 
-        {this.state.material.length > 0 &&
+        {this.state.material.length > 0 && 
           <Estimate material={this.state.material} />
         }
       </div>
