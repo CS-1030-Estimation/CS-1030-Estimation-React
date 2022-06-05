@@ -17,4 +17,11 @@
 }
 .input {
     padding: 10rem;
+    margin: 1rem;
+    width: 50%;
+    height: auto;
+}
+.display-total {
+    display: flex;
+    justify-content: flex-end;
 }

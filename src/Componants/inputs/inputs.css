@@ -1,0 +1,37 @@
+.inputs {
+    height: auto;
+    width: 100%;
+    background-color: green;
+}
+.cladding-input {
+    display: flex;
+    justify-content: space-evenly;
+    padding: .5rem;
+    background-color: brown;
+}
+.cladding-input p {
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.sf-input {
+    display: flex;
+    justify-content: space-evenly;
+    padding: .5rem;
+    background-color: blueviolet;
+}
+.sf-input p {
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.add-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+.item-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: blueviolet;
+}

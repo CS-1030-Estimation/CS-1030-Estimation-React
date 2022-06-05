@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import Select from 'react-select'
+import './estimate.css'
 
 export default class Estimate extends Component {
     constructor(){
@@ -39,7 +39,6 @@ export default class Estimate extends Component {
         return ( 
             <div>
                 <button onClick={() => this.handleEst(this.props.material)}>Get Estimate</button>
-
                 {!this.state.display ? <></> :
                 <h1>{`Total Price will be $${this.state.total}`}</h1>}
             </div>

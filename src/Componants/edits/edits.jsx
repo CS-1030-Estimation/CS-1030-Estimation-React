@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Select from "react-select"
+import './edits.css'
 
 export default class Edits extends Component {
     state = {
@@ -16,7 +17,7 @@ export default class Edits extends Component {
         this.setState({
             edit: false
         })
-        this.props.handleEdit(this.props.id, this.state.input, this.state.sf)
+        this.props.handleEdit(this.props.id, this.state.input, this.state.sf, true)
     }
 
     toggleEdit = () => {
@@ -54,12 +55,14 @@ export default class Edits extends Component {
         this.setState({
             input: value.lable
         })
+        // this.props.handleDisplay(false)
     }
     
     handleNumber = (e) => {
         this.setState({
             sf: e.target.value
         })
+        // this.props.handleDisplay(false)
     }
 
     render = () => {
@@ -70,12 +73,7 @@ export default class Edits extends Component {
         <div>
             {!this.state.edit ? <>{this.props.text}</> :
             <div>
-                <Select 
-                getOptionLabel={(options) => options['lable']}
-                options={select.options} 
-                value={select.value}
-                onChange={this.handleText}
-                />
+                <Select getOptionLabel={(options) => options['lable']} options={select.options} value={select.value} onChange={this.handleText}/>
                 <input onChange={(e) => this.handleNumber(e)} type='number' min='0' placeholder='Squre Foot' value={this.state.sf}/>
             <button onClick={this.handleEdit}>Submit</button>
             </div>}

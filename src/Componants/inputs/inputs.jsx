@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Edits from './../edits/edits'
 import Estimate from '../estimate/estimate'
 import Select from "react-select"
+import './inputs.css'
 
 export default class Inputs extends Component {
   constructor(){
@@ -19,7 +20,7 @@ export default class Inputs extends Component {
       key: 1,
       input: '',
       sf: 0,
-      material: [{id:10,text:"Brick",sf:1}],
+      material: [],
       select: {
         value: null,
         options
@@ -28,15 +29,25 @@ export default class Inputs extends Component {
   }
 
   handleSumbit = (e,el) => {
-    this.state.material.push({id:this.state.key,text:e,sf:parseInt(el)})
-    this.setState((prevState) => ({
-      display: true,
-      key: prevState.key + 1,
-      input: '',
-      sf: 0
-    }))
-    this.setValue(null)
-    console.log('in sub:  ',this.state.display)
+    if (e === ''){
+      this.state.material.push({id:this.state.key,text:'Error',sf:parseInt(el)})
+      this.setState((prevState) => ({
+        display: true,
+        key: prevState.key + 1,
+        input: '',
+        sf: 0
+      }))
+      this.setValue(null)
+    } else {
+      this.state.material.push({id:this.state.key,text:e,sf:parseInt(el)})
+      this.setState((prevState) => ({
+        display: true,
+        key: prevState.key + 1,
+        input: '',
+        sf: 0
+      }))
+      this.setValue(null)
+    }
   }
 
   handleEdit = (e , text, sf, bool) => {
@@ -47,10 +58,10 @@ export default class Inputs extends Component {
       } 
     }
     this.setState({
-      display: true,
+      display: bool,
       input: ''
     })
-    console.log('in edit:  ', this.state.display)
+    console.log(this.state.display)
   }
 
   handleDelete = (e) => {
@@ -104,19 +115,26 @@ export default class Inputs extends Component {
     })
 
     return (
-      <div>
-        <Select 
-        getOptionLabel={(options) => options['lable']}
-        options={select.options} 
-        value={select.value}
-        onChange={this.handleText}
-        />
-        <input onChange={(e) => this.handleNumber(e)} type='number' min='0' placeholder='Squre Foot' value={this.state.sf}/>
-        <button onClick={() => this.handleSumbit(this.state.input, this.state.sf)}>Add Items</button>
-        {list} 
-        {this.state.material.length > 0 && 
-          <Estimate material={this.state.material} />
-        }
+      <div className='inputs'>
+        <div className='cladding-input'>
+          <p>Input exterior cladding</p>
+          <Select getOptionLabel={(options) => options['lable']} options={select.options} value={select.value} onChange={this.handleText}/>
+        </div>
+        <div className='sf-input'>
+        <p>Input exterior cladding</p>
+          <input onChange={(e) => this.handleNumber(e)} type='number' min='0' placeholder='Squre Foot' value={this.state.sf}/>
+        </div>
+        <div className='add-item'>
+          <button onClick={() => this.handleSumbit(this.state.input, this.state.sf)}>Add Items</button>
+        </div>
+        <div className='item-list'>
+          {list} 
+        </div>
+        <div className='display-total'>
+          {this.state.material.length > 0 && 
+            <Estimate material={this.state.material} />
+          }
+        </div>
       </div>
     )
   }
