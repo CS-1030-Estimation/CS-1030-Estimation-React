@@ -16,6 +16,7 @@ export default class Inputs extends Component {
     ]
 
     this.state = {
+      //? I wanted display to act as a way to remove the get bid button but it didnt work that great so its not being used. 
       display: false,
       key: 1,
       input: '',
@@ -100,6 +101,13 @@ export default class Inputs extends Component {
     })
   }
 
+  handleReset = () => {
+    this.setState({
+      material: [],
+      display: false
+  })
+}
+
   render(){
 
     const { select } = this.state;
@@ -133,6 +141,9 @@ export default class Inputs extends Component {
         <div className='display-total'>
           {this.state.material.length > 0 && 
             <Estimate material={this.state.material} />
+          }
+          {this.state.material.length > 0 && 
+            <button onClick={this.handleReset}>Reset Bid</button>
           }
         </div>
       </div>
