@@ -17,7 +17,7 @@ export default class Edits extends Component {
         this.setState({
             edit: false
         })
-        this.props.handleEdit(this.props.id, this.state.input, this.state.sf, true)
+        this.props.handleEdit(this.props.id, this.state.input, this.state.sf, false)
     }
 
     toggleEdit = () => {
@@ -70,9 +70,9 @@ export default class Edits extends Component {
         const { select } = this.state;
 
         return ( 
-        <div>
+        <div className='edit-items'>
             {!this.state.edit ? <>{this.props.text}</> :
-            <div>
+            <div className='popup'>
                 <Select getOptionLabel={(options) => options['lable']} options={select.options} value={select.value} onChange={this.handleText}/>
                 <input onChange={(e) => this.handleNumber(e)} type='number' min='0' placeholder='Squre Foot' value={this.state.sf}/>
             <button onClick={this.handleEdit}>Submit</button>

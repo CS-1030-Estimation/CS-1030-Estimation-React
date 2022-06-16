@@ -5,7 +5,7 @@ export default class Header extends Component {
 
     render = () => {
         return ( 
-        <h1>Estimation Destination</h1>
+        <div className='header'>Estimation Destination</div>
         )
     }
 }

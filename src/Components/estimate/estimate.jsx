@@ -7,6 +7,7 @@ export default class Estimate extends Component {
         this.state = {
             material: [],
             display: false,
+            getEst: false,
             total: 0,
             brick: 18,
             stone: 23,
@@ -32,15 +33,20 @@ export default class Estimate extends Component {
         }
         this.setState({
             display: true,
+            getEst: true,
             total: num
         })
     }
     render = () => {
         return ( 
-            <div>
-                <button onClick={() => this.handleEst(this.props.material)}>Get Estimate</button>
+            <div className='bid'>
+                {this.state.getEst ? <></> :
+                <button onClick={() => this.handleEst(this.props.material)}>Get Estimate</button>}
                 {!this.state.display ? <></> :
-                <h1>{`Total Price will be $${this.state.total}`}</h1>}
+                <div className='price'>
+                    <p>{`Total Price will be $${this.state.total}`}</p>
+                    <button onClick={() => this.handleEst(this.props.material)}>Update Estimate</button>
+                    </div>}
             </div>
         )
     }

@@ -15,8 +15,7 @@ export default class Inputs extends Component {
       {value:'Panel',lable:'Panel'}
     ]
 
-    this.state = {
-      //? I wanted display to act as a way to remove the get bid button but it didnt work that great so its not being used. 
+    this.state = { 
       display: false,
       key: 1,
       input: '',
@@ -33,7 +32,7 @@ export default class Inputs extends Component {
     if (e === ''){
       this.state.material.push({id:this.state.key,text:'Error',sf:parseInt(el)})
       this.setState((prevState) => ({
-        display: true,
+        display: false,
         key: prevState.key + 1,
         input: '',
         sf: 0
@@ -62,7 +61,6 @@ export default class Inputs extends Component {
       display: bool,
       input: ''
     })
-    console.log(this.state.display)
   }
 
   handleDelete = (e) => {
@@ -123,7 +121,9 @@ export default class Inputs extends Component {
     })
 
     return (
-      <div className='inputs'>
+      <div>
+      <div className='display'>
+        <div className='inputs'>
         <div className='cladding-input'>
           <p>Input exterior cladding</p>
           <Select getOptionLabel={(options) => options['lable']} options={select.options} value={select.value} onChange={this.handleText}/>
@@ -135,15 +135,22 @@ export default class Inputs extends Component {
         <div className='add-item'>
           <button onClick={() => this.handleSumbit(this.state.input, this.state.sf)}>Add Items</button>
         </div>
+        </div>
+        <div className='item-head'>
+        {this.state.material.length > 0 ? <p>Items Added</p> :
+            <p>No items yet</p>
+          } 
         <div className='item-list'>
           {list} 
-        </div>
-        <div className='display-total'>
-          {this.state.material.length > 0 && 
-            <Estimate material={this.state.material} />
-          }
           {this.state.material.length > 0 && 
             <button onClick={this.handleReset}>Reset Bid</button>
+          }
+        </div>
+        </div>
+      </div>
+      <div className='display-total'>
+          {this.state.material.length > 0 && 
+            <Estimate material={this.state.material} getEst={this.state.display} />
           }
         </div>
       </div>
